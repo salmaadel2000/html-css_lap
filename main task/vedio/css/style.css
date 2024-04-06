@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    background-image:
+        linear-gradient(to bottom, rgba(141, 147, 181, 0.52), rgba(11, 24, 86, 0.73)),
+        url('../img/img.jpg');
+
+}
+
+.frist {
+    width: 60%;
+    height: 600px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.frist video {
+    height: auto;
+    width: 100%;
+}
+
+.frist,
+.sec {
+    border: #abdbe3 5px solid;
+    outline: 5px solid #154c79;
+    outline-offset: 10px;
+    border-radius: 30px;
+    transition: all 0.5s ease-in-out;
+    padding: 10px;
+}
+
+.frist:hover {
+    outline-offset: 20px;
+}
+
+.sec:hover {
+    outline-offset: 20px;
+}
+
+.sec {
+    width: 10%;
+}
+
+.sec ul {
+    height: 40vh;
+    width: 80%;
+}
+
+.sec {
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+.item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 25%;
+    transition: all 0.5s ease-in-out;
+    padding: 3px;
+}
+.item li {
+    list-style: none;
+}
+
+.item:hover {
+    background-color: white;
+    border-radius: 10px;
+    color: #154c79;
+    transform: scale(1.2);
+}

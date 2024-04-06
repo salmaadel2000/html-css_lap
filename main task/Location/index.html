@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Geolocation Map</title>
+    <style>
+        #mymap {
+            width: 600px;
+            height: 600px;
+        }
+
+        #details {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB90FxtYG_ybAYXGkz0ybkmkboE2nEbezI"></script>
+    <script>
+        let mymap; 
+
+        window.addEventListener('load', function () {
+            mymap = document.getElementById('mymap');
+        });
+
+        function getlocationdata() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(getposition, errorhandler);
+            } else {
+                mymap.innerText = "Sorry, Update Your Browser And Try Again!";
+            }
+        }
+
+        function getposition(e) {
+            console.log(e);
+            var lat = e.coords.latitude;
+            var lon = e.coords.longitude;
+
+            var location = new google.maps.LatLng(lat, lon);
+            var specs = { zoom: 17, center: location };
+            var map = new google.maps.Map(mymap, specs);
+
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: 'Your Location'
+            });
+        }
+
+        function errorhandler(e) {
+            alert('Error');
+        }
+
+        function showDetails() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    var accuracy = position.coords.accuracy;
+                    var timestamp = position.timestamp;
+
+                    var detailsDiv = document.getElementById('details');
+                    detailsDiv.innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude;
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="Get Location" onclick="getlocationdata();" />
+    <input type="button" value="Detailed Information" onclick="showDetails();" />
+    <div id="mymap"></div>
+    <div id="details"></div>
+</body>
+</html>
